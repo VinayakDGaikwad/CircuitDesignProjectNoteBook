@@ -1,0 +1,6 @@
+_lcd_cmd: CODE, 32584 0 30
+_lcd_data: CODE, 32614 0 30
+_main: CODE, 32644 0 124
+__initialization: CODE, 32550 0 0
+_msdelay: CODE, 32556 0 28
+Total: 212

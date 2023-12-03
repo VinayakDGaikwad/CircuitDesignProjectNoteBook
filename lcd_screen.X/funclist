@@ -1,0 +1,7 @@
+_lcd_delay: CODE, 1696 0 54
+__stringdata: SMALLCONST, 1537 0 28
+_main: CODE, 1566 0 130
+_SendData: CODE, 1836 0 40
+__initialization: CODE, 1750 0 32
+_SendInstruction: CODE, 1796 0 40
+Total: 324

@@ -1,0 +1,532 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.30 build 55553 
+                                                                                               Wed May 18 21:13:43 2022
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 55553
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    12                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    13  0000                     _ADCON1	set	4033
+    14  0000                     _PORTD	set	3971
+    15  0000                     _PORTEbits	set	3972
+    16  0000                     _TRISD	set	3989
+    17  0000                     _TRISE	set	3990
+    18                           
+    19                           ; 0 bytes @ 0x5
+    20 ;;
+    21 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    22 ;;
+    23 ;; *************** function _main *****************
+    24 ;; Defined at:
+    25 ;;		line 36 in file "newmain.c"
+    26 ;; Parameters:    Size  Location     Type
+    27 ;;		None
+    28 ;; Auto vars:     Size  Location     Type
+    29 ;;		None
+    30 ;; Return value:  Size  Location     Type
+    31 ;;		None               void
+    32 ;; Registers used:
+    33 ;;		wreg, status,2, status,0, cstack
+    34 ;; Tracked objects:
+    35 ;;		On entry : 0/0
+    36 ;;		On exit  : 0/0
+    37 ;;		Unchanged: 0/0
+    38 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+    39 ;;      Params:         0       0       0       0       0       0       0       0       0
+    40 ;;      Locals:         0       0       0       0       0       0       0       0       0
+    41 ;;      Temps:          0       0       0       0       0       0       0       0       0
+    42 ;;      Totals:         0       0       0       0       0       0       0       0       0
+    43 ;;Total ram usage:        0 bytes
+    44 ;; Hardware stack levels required when called:    2
+    45 ;; This function calls:
+    46 ;;		_lcd_cmd
+    47 ;;		_lcd_data
+    48 ;;		_msdelay
+    49 ;; This function is called by:
+    50 ;;		Startup code after reset
+    51 ;; This function uses a non-reentrant model
+    52 ;;
+    53                           
+    54                           	psect	text0
+    55  007F84                     __ptext0:
+    56                           	opt stack 0
+    57  007F84                     _main:
+    58                           	opt stack 29
+    59                           
+    60                           ;newmain.c: 38: TRISD = 0x00;
+    61                           
+    62                           ;incstack = 0
+    63  007F84  0E00               	movlw	0
+    64  007F86  6E95               	movwf	3989,c	;volatile
+    65                           
+    66                           ;newmain.c: 39: ADCON1 = 0x0f;
+    67  007F88  0E0F               	movlw	15
+    68  007F8A  6EC1               	movwf	4033,c	;volatile
+    69                           
+    70                           ;newmain.c: 41: TRISE = 0x00;
+    71  007F8C  0E00               	movlw	0
+    72  007F8E  6E96               	movwf	3990,c	;volatile
+    73                           
+    74                           ;newmain.c: 42: msdelay(50);
+    75  007F90  0E00               	movlw	0
+    76  007F92  6E02               	movwf	msdelay@len+1,c
+    77  007F94  0E32               	movlw	50
+    78  007F96  6E01               	movwf	msdelay@len,c
+    79  007F98  EC96  F03F         	call	_msdelay	;wreg free
+    80                           
+    81                           ;newmain.c: 44: lcd_cmd(0x38);
+    82  007F9C  0E38               	movlw	56
+    83  007F9E  ECA4  F03F         	call	_lcd_cmd
+    84                           
+    85                           ;newmain.c: 45: msdelay(50);
+    86  007FA2  0E00               	movlw	0
+    87  007FA4  6E02               	movwf	msdelay@len+1,c
+    88  007FA6  0E32               	movlw	50
+    89  007FA8  6E01               	movwf	msdelay@len,c
+    90  007FAA  EC96  F03F         	call	_msdelay	;wreg free
+    91                           
+    92                           ;newmain.c: 47: lcd_cmd(0x01);
+    93  007FAE  0E01               	movlw	1
+    94  007FB0  ECA4  F03F         	call	_lcd_cmd
+    95                           
+    96                           ;newmain.c: 48: msdelay(50);
+    97  007FB4  0E00               	movlw	0
+    98  007FB6  6E02               	movwf	msdelay@len+1,c
+    99  007FB8  0E32               	movlw	50
+   100  007FBA  6E01               	movwf	msdelay@len,c
+   101  007FBC  EC96  F03F         	call	_msdelay	;wreg free
+   102                           
+   103                           ;newmain.c: 50: lcd_cmd(0x06);
+   104  007FC0  0E06               	movlw	6
+   105  007FC2  ECA4  F03F         	call	_lcd_cmd
+   106                           
+   107                           ;newmain.c: 51: msdelay(50);
+   108  007FC6  0E00               	movlw	0
+   109  007FC8  6E02               	movwf	msdelay@len+1,c
+   110  007FCA  0E32               	movlw	50
+   111  007FCC  6E01               	movwf	msdelay@len,c
+   112  007FCE  EC96  F03F         	call	_msdelay	;wreg free
+   113                           
+   114                           ;newmain.c: 53: lcd_cmd(0x80);
+   115  007FD2  0E80               	movlw	128
+   116  007FD4  ECA4  F03F         	call	_lcd_cmd
+   117                           
+   118                           ;newmain.c: 54: msdelay(50);
+   119  007FD8  0E00               	movlw	0
+   120  007FDA  6E02               	movwf	msdelay@len+1,c
+   121  007FDC  0E32               	movlw	50
+   122  007FDE  6E01               	movwf	msdelay@len,c
+   123  007FE0  EC96  F03F         	call	_msdelay	;wreg free
+   124                           
+   125                           ;newmain.c: 56: lcd_data('H');
+   126  007FE4  0E48               	movlw	72
+   127  007FE6  ECB3  F03F         	call	_lcd_data
+   128                           
+   129                           ;newmain.c: 57: msdelay(10);
+   130  007FEA  0E00               	movlw	0
+   131  007FEC  6E02               	movwf	msdelay@len+1,c
+   132  007FEE  0E0A               	movlw	10
+   133  007FF0  6E01               	movwf	msdelay@len,c
+   134  007FF2  EC96  F03F         	call	_msdelay	;wreg free
+   135                           
+   136                           ;newmain.c: 58: lcd_data('I');
+   137  007FF6  0E49               	movlw	73
+   138  007FF8  ECB3  F03F         	call	_lcd_data
+   139  007FFC  EF00  F000         	goto	start
+   140  008000                     __end_of_main:
+   141                           	opt stack 0
+   142                           
+   143                           	psect	cinit
+   144  007F26                     __pcinit:
+   145                           	opt stack 0
+   146  007F26                     start_initialization:
+   147                           	opt stack 0
+   148  007F26                     __initialization:
+   149                           	opt stack 0
+   150  007F26                     end_of_initialization:
+   151                           	opt stack 0
+   152  007F26                     __end_of__initialization:
+   153                           	opt stack 0
+   154  007F26  0100               	movlb	0
+   155  007F28  EFC2  F03F         	goto	_main	;jump to C main() function
+   156                           
+   157                           	psect	cstackCOMRAM
+   158  000001                     __pcstackCOMRAM:
+   159                           	opt stack 0
+   160  000001                     msdelay@len:
+   161                           	opt stack 0
+   162                           
+   163                           ; 2 bytes @ 0x0
+   164  000001                     	ds	2
+   165  000003                     msdelay@i:
+   166                           	opt stack 0
+   167                           
+   168                           ; 2 bytes @ 0x2
+   169  000003                     	ds	2
+   170  000005                     lcd_cmd@value:
+   171                           	opt stack 0
+   172  000005                     lcd_data@value:
+   173                           	opt stack 0
+   174                           
+   175                           ; 1 bytes @ 0x4
+   176  000005                     	ds	1
+   177  000006                     
+   178 ;; *************** function _lcd_data *****************
+   179 ;; Defined at:
+   180 ;;		line 27 in file "newmain.c"
+   181 ;; Parameters:    Size  Location     Type
+   182 ;;  value           1    wreg     unsigned char 
+   183 ;; Auto vars:     Size  Location     Type
+   184 ;;  value           1    4[COMRAM] unsigned char 
+   185 ;; Return value:  Size  Location     Type
+   186 ;;		None               void
+   187 ;; Registers used:
+   188 ;;		wreg, status,2, status,0, cstack
+   189 ;; Tracked objects:
+   190 ;;		On entry : 0/0
+   191 ;;		On exit  : 0/0
+   192 ;;		Unchanged: 0/0
+   193 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   194 ;;      Params:         0       0       0       0       0       0       0       0       0
+   195 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   196 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   197 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   198 ;;Total ram usage:        1 bytes
+   199 ;; Hardware stack levels used:    1
+   200 ;; Hardware stack levels required when called:    1
+   201 ;; This function calls:
+   202 ;;		_msdelay
+   203 ;; This function is called by:
+   204 ;;		_main
+   205 ;; This function uses a non-reentrant model
+   206 ;;
+   207                           
+   208                           	psect	text1
+   209  007F66                     __ptext1:
+   210                           	opt stack 0
+   211  007F66                     _lcd_data:
+   212                           	opt stack 29
+   213                           
+   214                           ;incstack = 0
+   215                           ;lcd_data@value stored from wreg
+   216  007F66  CFE8 F005          	movff	wreg,lcd_data@value
+   217                           
+   218                           ;newmain.c: 28: PORTD = value;
+   219  007F6A  C005  FF83         	movff	lcd_data@value,3971	;volatile
+   220                           
+   221                           ;newmain.c: 29: PORTEbits.RE0 = 1;
+   222  007F6E  8084               	bsf	3972,0,c	;volatile
+   223                           
+   224                           ;newmain.c: 30: PORTEbits.RE1 = 0;
+   225  007F70  9284               	bcf	3972,1,c	;volatile
+   226                           
+   227                           ;newmain.c: 31: PORTEbits.RE2 = 1;
+   228  007F72  8484               	bsf	3972,2,c	;volatile
+   229                           
+   230                           ;newmain.c: 32: msdelay(50);
+   231  007F74  0E00               	movlw	0
+   232  007F76  6E02               	movwf	msdelay@len+1,c
+   233  007F78  0E32               	movlw	50
+   234  007F7A  6E01               	movwf	msdelay@len,c
+   235  007F7C  EC96  F03F         	call	_msdelay	;wreg free
+   236                           
+   237                           ;newmain.c: 33: PORTEbits.RE2 = 0;
+   238  007F80  9484               	bcf	3972,2,c	;volatile
+   239  007F82  0012               	return	
+   240  007F84                     __end_of_lcd_data:
+   241                           	opt stack 0
+   242                           wreg	equ	0xFE8
+   243                           
+   244 ;; *************** function _lcd_cmd *****************
+   245 ;; Defined at:
+   246 ;;		line 18 in file "newmain.c"
+   247 ;; Parameters:    Size  Location     Type
+   248 ;;  value           1    wreg     unsigned char 
+   249 ;; Auto vars:     Size  Location     Type
+   250 ;;  value           1    4[COMRAM] unsigned char 
+   251 ;; Return value:  Size  Location     Type
+   252 ;;		None               void
+   253 ;; Registers used:
+   254 ;;		wreg, status,2, status,0, cstack
+   255 ;; Tracked objects:
+   256 ;;		On entry : 0/0
+   257 ;;		On exit  : 0/0
+   258 ;;		Unchanged: 0/0
+   259 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   260 ;;      Params:         0       0       0       0       0       0       0       0       0
+   261 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   262 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   263 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   264 ;;Total ram usage:        1 bytes
+   265 ;; Hardware stack levels used:    1
+   266 ;; Hardware stack levels required when called:    1
+   267 ;; This function calls:
+   268 ;;		_msdelay
+   269 ;; This function is called by:
+   270 ;;		_main
+   271 ;; This function uses a non-reentrant model
+   272 ;;
+   273                           
+   274                           	psect	text2
+   275  007F48                     __ptext2:
+   276                           	opt stack 0
+   277  007F48                     _lcd_cmd:
+   278                           	opt stack 29
+   279                           
+   280                           ;incstack = 0
+   281                           ;lcd_cmd@value stored from wreg
+   282  007F48  CFE8 F005          	movff	wreg,lcd_cmd@value
+   283                           
+   284                           ;newmain.c: 19: PORTD = value;
+   285  007F4C  C005  FF83         	movff	lcd_cmd@value,3971	;volatile
+   286                           
+   287                           ;newmain.c: 20: PORTEbits.RE0 = 0;
+   288  007F50  9084               	bcf	3972,0,c	;volatile
+   289                           
+   290                           ;newmain.c: 21: PORTEbits.RE1 = 0;
+   291  007F52  9284               	bcf	3972,1,c	;volatile
+   292                           
+   293                           ;newmain.c: 22: PORTEbits.RE2 = 1;
+   294  007F54  8484               	bsf	3972,2,c	;volatile
+   295                           
+   296                           ;newmain.c: 23: msdelay(50);
+   297  007F56  0E00               	movlw	0
+   298  007F58  6E02               	movwf	msdelay@len+1,c
+   299  007F5A  0E32               	movlw	50
+   300  007F5C  6E01               	movwf	msdelay@len,c
+   301  007F5E  EC96  F03F         	call	_msdelay	;wreg free
+   302                           
+   303                           ;newmain.c: 24: PORTEbits.RE2 = 0;
+   304  007F62  9484               	bcf	3972,2,c	;volatile
+   305  007F64  0012               	return	
+   306  007F66                     __end_of_lcd_cmd:
+   307                           	opt stack 0
+   308                           wreg	equ	0xFE8
+   309                           
+   310 ;; *************** function _msdelay *****************
+   311 ;; Defined at:
+   312 ;;		line 14 in file "newmain.c"
+   313 ;; Parameters:    Size  Location     Type
+   314 ;;  len             2    0[COMRAM] unsigned int 
+   315 ;; Auto vars:     Size  Location     Type
+   316 ;;  i               2    2[COMRAM] int 
+   317 ;; Return value:  Size  Location     Type
+   318 ;;		None               void
+   319 ;; Registers used:
+   320 ;;		wreg, status,2, status,0
+   321 ;; Tracked objects:
+   322 ;;		On entry : 0/0
+   323 ;;		On exit  : 0/0
+   324 ;;		Unchanged: 0/0
+   325 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   326 ;;      Params:         2       0       0       0       0       0       0       0       0
+   327 ;;      Locals:         2       0       0       0       0       0       0       0       0
+   328 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   329 ;;      Totals:         4       0       0       0       0       0       0       0       0
+   330 ;;Total ram usage:        4 bytes
+   331 ;; Hardware stack levels used:    1
+   332 ;; This function calls:
+   333 ;;		Nothing
+   334 ;; This function is called by:
+   335 ;;		_lcd_cmd
+   336 ;;		_lcd_data
+   337 ;;		_main
+   338 ;; This function uses a non-reentrant model
+   339 ;;
+   340                           
+   341                           	psect	text3
+   342  007F2C                     __ptext3:
+   343                           	opt stack 0
+   344  007F2C                     _msdelay:
+   345                           	opt stack 30
+   346                           
+   347                           ;newmain.c: 15: for(int i=0;i<len;i++);
+   348                           
+   349                           ;incstack = 0
+   350  007F2C  0E00               	movlw	0
+   351  007F2E  6E04               	movwf	msdelay@i+1,c
+   352  007F30  0E00               	movlw	0
+   353  007F32  6E03               	movwf	msdelay@i,c
+   354  007F34  D002               	goto	l605
+   355  007F36                     l603:
+   356  007F36  4A03               	infsnz	msdelay@i,f,c
+   357  007F38  2A04               	incf	msdelay@i+1,f,c
+   358  007F3A                     l605:
+   359  007F3A  5001               	movf	msdelay@len,w,c
+   360  007F3C  5C03               	subwf	msdelay@i,w,c
+   361  007F3E  5002               	movf	msdelay@len+1,w,c
+   362  007F40  5804               	subwfb	msdelay@i+1,w,c
+   363  007F42  B0D8               	btfsc	status,0,c
+   364  007F44  0012               	return	
+   365  007F46  D7F7               	goto	l603
+   366  007F48                     __end_of_msdelay:
+   367                           	opt stack 0
+   368  0000                     wreg	equ	0xFE8
+   369                           status	equ	0xFD8
+   370                           wreg	equ	0xFE8
+   371                           status	equ	0xFD8
+   372                           
+   373                           	psect	rparam
+   374  0000                     wreg	equ	0xFE8
+   375                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      5       5
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_lcd_cmd
+    _main->_lcd_data
+    _lcd_data->_msdelay
+    _lcd_cmd->_msdelay
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     936
+                            _lcd_cmd
+                           _lcd_data
+                            _msdelay
+ ---------------------------------------------------------------------------------
+ (1) _lcd_data                                             1     1      0     317
+                                              4 COMRAM     1     1      0
+                            _msdelay
+ ---------------------------------------------------------------------------------
+ (1) _lcd_cmd                                              1     1      0     317
+                                              4 COMRAM     1     1      0
+                            _msdelay
+ ---------------------------------------------------------------------------------
+ (1) _msdelay                                              4     2      2     302
+                                              0 COMRAM     4     2      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _lcd_cmd
+     _msdelay
+   _lcd_data
+     _msdelay
+   _msdelay
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      5       5       1        5.3%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.30 build 55553 
+Symbol Table                                                                                   Wed May 18 21:13:43 2022
+
+           lcd_cmd@value 0005            lcd_data@value 0005                      l603 7F36  
+                    l605 7F3A                      wreg 000FE8             __CFG_LVP$OFF 000000  
+           __CFG_WDT$OFF 000000                     _main 7F84                     start 0000  
+                  ?_main 0001           __CFG_DEBUG$OFF 000000                    _PORTD 000F83  
+                  _TRISD 000F95                    _TRISE 000F96            __CFG_PWRT$OFF 000000  
+        __end_of_lcd_cmd 7F66          __end_of_msdelay 7F48                    status 000FD8  
+        __initialization 7F26             __end_of_main 8000                   ??_main 0006  
+          __activetblptr 000000                   _ADCON1 000FC1         __end_of_lcd_data 7F84  
+              ??_lcd_cmd 0005                ??_msdelay 0003               __accesstop 0060  
+__end_of__initialization 7F26           __pcstackCOMRAM 0001                ?_lcd_data 0001  
+                __Hparam 0000                  __Lparam 0000                  __pcinit 7F26  
+                __ramtop 0800                  __ptext0 7F84                  __ptext1 7F66  
+                __ptext2 7F48                  __ptext3 7F2C                  _lcd_cmd 7F48  
+                _msdelay 7F2C               ??_lcd_data 0005     end_of_initialization 7F26  
+              _PORTEbits 000F84      start_initialization 7F26        __size_of_lcd_data 001E  
+             msdelay@len 0001                 ?_lcd_cmd 0001                 ?_msdelay 0001  
+               __Hrparam 0000                 __Lrparam 0000         __size_of_lcd_cmd 001E  
+       __size_of_msdelay 001C                 _lcd_data 7F66            __size_of_main 007C  
+               msdelay@i 0003  
